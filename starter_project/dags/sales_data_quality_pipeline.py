@@ -17,15 +17,18 @@ if str(PROJECT_ROOT) not in sys.path:
 
 def validate_orders_task() -> dict:
     """
-    TODO:
-    1. Import config values.
-    2. Read the input CSV.
-    3. Validate the rows.
-    4. Write the JSON summary.
-    5. Send the Discord alert.
-    6. Raise an error on failed validation.
+    Thực thi quy trình kiểm tra dữ liệu:
+    1. Lấy đường dẫn file input từ biến môi trường hoặc mặc định.
+    2. Chạy quy trình kiểm tra (đọc, validate, ghi JSON, gửi Discord).
+    3. Trả về bản tóm tắt kết quả.
     """
-    raise NotImplementedError
+    from src.config import AIRFLOW_INPUT_FILE, SUMMARY_FILE
+    from src.validation import run_lab_check
+
+    return run_lab_check(
+        input_path=AIRFLOW_INPUT_FILE,
+        output_path=SUMMARY_FILE
+    )
 
 
 if DAG is not None:
